@@ -7,12 +7,12 @@ enum NivelCarrera {
 
 // Clase Persona
 class Persona {
-    private String cedula;
-    private String nombre;
-    private Date fechaNacimiento;
-    private String ciudadNacimiento;
-    private String departamentoNacimiento;
-    private String paisNacimiento;
+    String cedula;
+    String nombre;
+    Date fechaNacimiento;
+    String ciudadNacimiento;
+    String departamentoNacimiento;
+    String paisNacimiento;
 
     public Persona(String cedula, String nombre, Date fechaNacimiento, String ciudadNacimiento, String departamentoNacimiento, String paisNacimiento) {
         this.cedula = cedula;
@@ -26,10 +26,10 @@ class Persona {
 
 // Clase Profesor
 class Profesor extends Persona {
-    private String profesion;
-    private String nacionalidad;
+    String profesion;
+    String nacionalidad;
     private double sueldo;
-    private Facultad facultad;
+    Facultad facultad;
     private List<Curso> cursos;
 
     public Profesor(String cedula, String nombre, Date fechaNacimiento, String ciudadNacimiento, String departamentoNacimiento, String paisNacimiento, String profesion, String nacionalidad, double sueldo, Facultad facultad) {
