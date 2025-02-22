@@ -1,1 +1,173 @@
+import java.util.*;
 
+// Enum para el nivel de la carrera
+enum NivelCarrera {
+    PREGRADO, POSTGRADO;
+}
+
+// Clase Persona
+class Persona {
+    private String cedula;
+    private String nombre;
+    private Date fechaNacimiento;
+    private String ciudadNacimiento;
+    private String departamentoNacimiento;
+    private String paisNacimiento;
+
+    public Persona(String cedula, String nombre, Date fechaNacimiento, String ciudadNacimiento, String departamentoNacimiento, String paisNacimiento) {
+        this.cedula = cedula;
+        this.nombre = nombre;
+        this.fechaNacimiento = fechaNacimiento;
+        this.ciudadNacimiento = ciudadNacimiento;
+        this.departamentoNacimiento = departamentoNacimiento;
+        this.paisNacimiento = paisNacimiento;
+    }
+}
+
+// Clase Profesor
+class Profesor extends Persona {
+    private String profesion;
+    private String nacionalidad;
+    private double sueldo;
+    private Facultad facultad;
+    private List<Curso> cursos;
+
+    public Profesor(String cedula, String nombre, Date fechaNacimiento, String ciudadNacimiento, String departamentoNacimiento, String paisNacimiento, String profesion, String nacionalidad, double sueldo, Facultad facultad) {
+        super(cedula, nombre, fechaNacimiento, ciudadNacimiento, departamentoNacimiento, paisNacimiento);
+        this.profesion = profesion;
+        this.nacionalidad = nacionalidad;
+        this.sueldo = sueldo;
+        this.facultad = facultad;
+        this.cursos = new ArrayList<>();
+    }
+    
+    public void asignarCurso(Curso curso) {
+        cursos.add(curso);
+    }
+}
+
+// Clase Estudiante
+class Estudiante extends Persona {
+    private String colegioGraduacion;
+    private Date fechaIngreso;
+    private List<Carrera> carreras;
+    private List<Curso> cursosInscritos;
+
+    public Estudiante(String cedula, String nombre, Date fechaNacimiento, String ciudadNacimiento, String departamentoNacimiento, String paisNacimiento, String colegioGraduacion, Date fechaIngreso) {
+        super(cedula, nombre, fechaNacimiento, ciudadNacimiento, departamentoNacimiento, paisNacimiento);
+        this.colegioGraduacion = colegioGraduacion;
+        this.fechaIngreso = fechaIngreso;
+        this.carreras = new ArrayList<>();
+        this.cursosInscritos = new ArrayList<>();
+    }
+    
+    public void inscribirCarrera(Carrera carrera) {
+        carreras.add(carrera);
+    }
+    
+    public void inscribirCurso(Curso curso) {
+        cursosInscritos.add(curso);
+    }
+}
+
+// Clase Facultad
+class Facultad {
+    private String nombre;
+    private int codigo;
+    private List<Profesor> profesores;
+    private List<Carrera> carreras;
+
+    public Facultad(String nombre, int codigo) {
+        this.nombre = nombre;
+        this.codigo = codigo;
+        this.profesores = new ArrayList<>();
+        this.carreras = new ArrayList<>();
+    }
+    
+    public void agregarProfesor(Profesor profesor) {
+        profesores.add(profesor);
+    }
+    
+    public void agregarCarrera(Carrera carrera) {
+        carreras.add(carrera);
+    }
+}
+
+// Clase Carrera
+class Carrera {
+    private String nombre;
+    private int creditosTotales;
+    private int semestres;
+    private NivelCarrera nivel;
+    private Facultad facultad;
+    private List<Curso> cursos;
+    private List<Estudiante> estudiantes;
+
+    public Carrera(String nombre, int creditosTotales, int semestres, NivelCarrera nivel, Facultad facultad) {
+        this.nombre = nombre;
+        this.creditosTotales = creditosTotales;
+        this.semestres = semestres;
+        this.nivel = nivel;
+        this.facultad = facultad;
+        this.cursos = new ArrayList<>();
+        this.estudiantes = new ArrayList<>();
+    }
+    
+    public void agregarCurso(Curso curso) {
+        cursos.add(curso);
+    }
+    
+    public void inscribirEstudiante(Estudiante estudiante) {
+        estudiantes.add(estudiante);
+    }
+}
+
+// Clase Curso
+class Curso {
+    private int codigo;
+    private String nombre;
+    private int creditos;
+    private String salon;
+    private String edificio;
+    private Carrera carrera;
+    private List<Profesor> profesores;
+    private List<Estudiante> estudiantes;
+
+    public Curso(int codigo, String nombre, int creditos, String salon, String edificio, Carrera carrera) {
+        this.codigo = codigo;
+        this.nombre = nombre;
+        this.creditos = creditos;
+        this.salon = salon;
+        this.edificio = edificio;
+        this.carrera = carrera;
+        this.profesores = new ArrayList<>();
+        this.estudiantes = new ArrayList<>();
+    }
+    
+    public void asignarProfesor(Profesor profesor) {
+        profesores.add(profesor);
+    }
+    
+    public void inscribirEstudiante(Estudiante estudiante) {
+        estudiantes.add(estudiante);
+    }
+}
+
+// Clase Universidad
+class Universidad {
+    private String nombre;
+    private String rector;
+    private String ciudad;
+    private List<Facultad> facultades;
+
+    public Universidad(String nombre, String rector, String ciudad) {
+        this.nombre = nombre;
+        this.rector = rector;
+        this.ciudad = ciudad;
+        this.facultades = new ArrayList<>();
+    }
+    
+    public void agregarFacultad(Facultad facultad) {
+        facultades.add(facultad);
+    }
+}
